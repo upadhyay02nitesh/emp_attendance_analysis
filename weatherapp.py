@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
 import os
-api_key = st.secrets["API_KEY"]
+API_KEY = st.secrets["API_KEY"]
 
-if not api_key:
+if not API_KEY:
     st.error("API key not found. Please set the API_KEY in your .env file.")
     st.stop()
 # Weatherstack API Key
