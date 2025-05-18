@@ -11,8 +11,24 @@ st.title("📊 Employee Attendance Report - April 2025")
 # Load CSV file
 uploaded_file = st.file_uploader("Upload Attendance CSV", type=["csv"])
 
+required_columns = {"Employee ID", "Date", "Status"}
+
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
+
+    # ✅ Check if required columns exist
+    if not required_columns.issubset(df.columns):
+        st.error(f"❌ Invalid CSV format. Please make sure your file contains the following columns: {', '.join(required_columns)}")
+        st.markdown("""
+        #### 📄 Sample CSV Format
+        ```
+        Employee ID,Date,Status
+        EMP001,2025-04-01,Present
+        EMP002,2025-04-01,Leave
+        EMP003,2025-04-01,No Show
+        ```
+        """)
+        st.stop()
 
     # Show Data Table
     st.subheader("📋 Attendance Table")
