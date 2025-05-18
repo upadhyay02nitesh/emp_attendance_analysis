@@ -1,14 +1,9 @@
 import streamlit as st
 import requests
 import os
-from dotenv import load_dotenv
+api_key = st.secrets["API_KEY"]
 
-# Load environment variables from .env file
-load_dotenv()
-
-# Get the API key from .env
-API_KEY = os.getenv("API_KEY")
-if not API_KEY:
+if not api_key:
     st.error("API key not found. Please set the API_KEY in your .env file.")
     st.stop()
 # Weatherstack API Key
